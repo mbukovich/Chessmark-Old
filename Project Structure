@@ -1,0 +1,48 @@
+Project Structure
+
+Proposed structure #1
+Main:
+(Contains - function to load pgn file, currentGame object, UI)
+
+Object Structure:
+Object: Game
+(Contains - 16 piece objects, a string collection which will contain all information and moves from the pgn file, a funtion to change the move forward or backward, function for displaying board with parameter canvas)
+
+Object: Piece
+(Contains - piece classification, array each for x and y location with the index being the move number, function for checking legal moves)
+
+Class: chessRules
+(contains - function for checking legal moves with a parameter of piece classification, function for calculating material score and possibly additional data)
+
+
+Proposed Sctructure #2
+Main:
+(Contains - function to load pgn file, currentGame object, UI)
+
+Object Structure:
+Object Game
+(Contains - 64 square objects, a string collection which will contain all information and moves from the pgn file, and function to check legal moves for each piece type, function for displaying board with parameter canvas)
+
+Object: Square
+(Contains - the value of the piece contained in the square)
+
+Class: chessRules
+(contains - function for checking legal moves with a parameter of piece classification, function for calculating material score and possibly additional data)
+
+
+Proposed structure #3
+Main:
+(Contains - function to load pgn file, currentGame object, UI)
+
+Object Structure:
+Object: Game
+(Contains - board object, a string collection which will contain all information and moves from the pgn file, a funtion to change the move forward or backward)
+
+Object: Board
+(Contains - 16 piece objects, function to display board, array with the contents of each square including captured "slots")
+
+Object: Piece
+(Contains - piece classification, array each for x and y location with the index being the move number, function for checking legal moves)
+
+Class: chessRules
+(contains - function for checking legal moves with a parameter of piece classification, function for calculating material score and possibly additional data)
