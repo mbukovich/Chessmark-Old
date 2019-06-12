@@ -1,0 +1,64 @@
+Declare Private Integer List xLocation  // locations will be added for each move from a function in the game object
+Declare Private Integer List yLocation  // --
+Declare Private Integer classification  // will be initialized in the piece module
+                                        // Classification System is the following:
+                                        // Numbers 1-6 are the white pieces
+                                        // Numbers 11-16 are the black pieces
+                                        // 1 (or 11) is a pawn
+                                        // 2 (or 12) is a Knight
+                                        // 3 (or 13) is a Bishop
+                                        // 4 (or 14) is a Rook
+                                        // 5 (or 15) is a Queen
+                                        // 6 (or 16) is a King
+
+// function that is called upon the initialization of the object.
+// Parameter x is the initial x location (file) of the piece
+// Parameter y is the initial y location (rank) of the piece
+// Parameter pieceClass is the classification of the piece
+Initialization module piece:
+ -Parameters: Integer x, Integer y, Integer pieceClass
+ xLocation = a List of (x)
+ yLocation = a List of (y)
+ classification = pieceClass
+ 
+// returns the piece's classification
+getClassification:
+ -Parameters: none
+ -return type: Integer
+ return classification
+
+// returns the piece's x location
+getLocationX:
+ -Paramters: Integer move
+ -return type: Integer
+ return xLocation[move]
+
+// returns the piece's y location
+getLocationY:
+ -Parameters: Integer move
+ -return type: Integer
+ return yLocation[move]
+ 
+// called by the game object whenever this is the piece which is moving in the particular ply or is captured.
+// If the piece is captured, it's location will be set to (0,0)
+addMove:
+ -Paramters: Integer x, Integer y
+ -return type: none
+ xLocation add(x) to List
+ yLocation add(y) to List
+
+// This is called by the game object whenever the game advances but this piece does not move.
+// This module simply adds another item to the location lists
+dontMove:
+ -Parameters: none
+ -return type: none
+ Declare local Integer x = xLocation[xLocation size - 1]
+ Declare local Integer y = yLocation[yLocation size - 1]
+ xLocation add(x) to List
+ yLocation add(y) to List
+
+// the module changes the classification of the piece. This is used when a pawn promotes.
+changeClassification:
+ -Parameters: Integer newClassificaiton
+ -return type: none
+ classification = newClassification
