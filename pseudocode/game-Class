@@ -1,0 +1,44 @@
+
+//  The properties of the Class are declared here
+Declare private list of Strings moves // a list containing all the moves of the game. Each index represents
+                                      // one "ply" or "tempo"
+
+// The following are the essential information from the tags in the pgn file. All Strings are initialized as
+// "-" in case the pgn file has incorrectly left out a tag
+Declare private String eventName = "-" // one of the essential tags containing information about the game
+Declare private String siteName = "-" // --  physical location at which the game took place
+Declare private String dateName = "-" // --  date of event
+Declare private String roundName = "-" // -- round within the event
+Declare private String whiteName = "-" // -- name of the player of the white pieces. Format: Lastname, Firstname
+Declare private String blackName = "-" // -- name of the player of the black pieces. Format: Lastname, Firstname
+Declare private String Result = "-" // -- result of the game. can be 0-0, 1-0, 0-1, or *
+
+// In the future, a list of strings may be added to contain the contents of 
+
+
+//  Upon the creation of a new game object, the program will read the pgn file and store all information
+//  into the appropriate variables and objects.
+//  One future possibility is to start an empty game for the user to play out and later save a new pgn file.
+//  In that case, either the file name would be "new game" and a control structure would initialize the game
+//  in a different way, or a separate constructor or init module could be called for a fresh game. 
+constructor:
+ -parameters: String fileName // the name of the pgn file
+ -return: none
+ Call readFile(fileName)
+
+
+//  This is the method that actually reads a pgn file. First the method reads and stores the essential 
+//  information from the tags at the beginning of the file. This essential information is stored into
+//  specfic variables. 
+//  As soon as the program has finished reading tags (the program has just read a ']' character) and 
+//  encounters a '1' character at the beginning of the next line, the program begins to read the actual moves. These
+//  moves are stored into a list of Strings called 'moves'
+readFile
+ -parameters: String fileName
+ -return: none
+ read line (fileName)
+ while 1st char of fileName == '['
+   
+   read line (fileName)
+     
+   
