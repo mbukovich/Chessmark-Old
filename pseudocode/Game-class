@@ -13,18 +13,22 @@ Declare private String whiteName = "-" // -- name of the player of the white pie
 Declare private String blackName = "-" // -- name of the player of the black pieces. Format: Lastname, Firstname
 Declare private String Result = "-" // -- result of the game. can be 0-0, 1-0, 0-1, or *
 
-// In the future, a list of strings may be added to contain the contents of 
+// In the future, a list of strings may be added to contain the contents of additional/optional tags
 
 
 //  Upon the creation of a new game object, the program will read the pgn file and store all information
-//  into the appropriate variables and objects.
+//  into the appropriate variables and objects. This also creates a board (including it's pieces)
 //  One future possibility is to start an empty game for the user to play out and later save a new pgn file.
 //  In that case, either the file name would be "new game" and a control structure would initialize the game
 //  in a different way, or a separate constructor or init module could be called for a fresh game. 
 constructor:
  -parameters: String fileName // the name of the pgn file
  -return: none
- Call readFile(fileName)
+ call readFile(fileName)
+ board = Board() // create the board object. The board object's constructor will create the pieces and initialize
+                 // them in the proper starting position for a chess game.
+ board.applyMoves(moves) // this fills the board and pieces with the location information for the whole game
+ 
 
 
 //  This is the method that actually reads a pgn file. First the method reads and stores the essential 
@@ -33,12 +37,30 @@ constructor:
 //  As soon as the program has finished reading tags (the program has just read a ']' character) and 
 //  encounters a '1' character at the beginning of the next line, the program begins to read the actual moves. These
 //  moves are stored into a list of Strings called 'moves'
-readFile
+private readFile
  -parameters: String fileName
  -return: none
- read line (fileName)
- while 1st char of fileName == '['
+ // The first step is to save the general information about the game into the appropriate variables.
+ // In the future, additional/optional tags will likely be stored into a List of Strings for that specific
+ // purpose.
+ declare local String currentLine = read line (fileName)
+ while 1st char of currentLine == '['
    
-   read line (fileName)
+     currentLine = read line (fileName)
      
-   
+ // Now that the tags have been read, the program tests whether or not the last line of text contains the moves of
+ // the game by checking if the line starts with '1'. If not, the pgn file is not correctly formatted, and the
+ // program will give an error message
+ if 1st char of the currentLine == '1'
+     moves = getMoves(currentLine)
+ else
+     call errorMessage("format")
+
+
+//  This method is called by the readFile method. The purpose of this is to take the essential information from the
+//  line of moves in the pgn file and save it into a list that the program can easily access and utilize.
+private getMoves
+ -parameters: String lineOfMoves
+ -return: String
+ 
+ 
