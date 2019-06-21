@@ -3,6 +3,10 @@
 Declare private list of Strings moves // a list containing all the moves of the game. Each index represents
                                       // one "ply" or "tempo"
 
+Declare private Integer currentPly = 0 // This variable keeps track of the current move in the game. 
+
+Declare canvas object canvas // This is the variable that contains the ID of the canvas object used to display the board
+
 // The following are the essential information from the tags in the pgn file. All Strings are initialized as
 // "-" in case the pgn file has incorrectly left out a tag
 Declare private String eventName = "-" // one of the essential tags containing information about the game
@@ -28,7 +32,23 @@ constructor:
  board = Board() // create the board object. The board object's constructor will create the pieces and initialize
                  // them in the proper starting position for a chess game.
  board.applyMoves(moves) // this fills the board and pieces with the location information for the whole game
- 
+ board.display(canvas, currentPly)
+
+
+//This method advances the currentPly variable forward in increments of 1 and then displays the new situation on the board
+nextPly:
+ -paramters: none
+ -return: none
+ currentPly++
+ board.display(canvas, currentPly)
+
+
+//This method reduces the currentPly variable forward in increments of 1 and then displays the new situation on the board
+previousPly:
+ -paramters: none
+ -return: none
+ currentPly--
+ board.display(canvas, currentPly)
 
 
 //  This is the method that actually reads a pgn file. First the method reads and stores the essential 
