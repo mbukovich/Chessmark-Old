@@ -16,7 +16,7 @@ Declare private String dateName = "-" // --  date of event
 Declare private String roundName = "-" // -- round within the event
 Declare private String whiteName = "-" // -- name of the player of the white pieces. Format: Lastname, Firstname
 Declare private String blackName = "-" // -- name of the player of the black pieces. Format: Lastname, Firstname
-Declare private String Result = "-" // -- result of the game. can be 0-0, 1-0, 0-1, or *
+Declare private String resultName = "-" // -- result of the game. can be 0-0, 1-0, 0-1, or *
 
 // In the future, a list of strings may be added to contain the contents of additional/optional tags
 
@@ -67,9 +67,21 @@ private readFile
  // purpose.
  declare local String currentLine = read line (fileName)
  while 1st char of currentLine == '['
-   
-     currentLine = read line (fileName)
      
+     // this control structure assigns the information in the tag to the appropriate class property
+     case:
+         currentLine contains "Event": eventName = get text between quotes in currentLine
+         currentLine contains "Site": siteName = get text between quotes in currentLine
+         currentLine contains "Date": dateName = get text between quotes in currentLine
+         currentLine contains "Round": roundName = get text between quotes in currentLine
+         currentLine contains "White": whiteName = get text between quotes in currentLine
+         currentLine contains "Black": blackName = get text between quotes in currentLine
+         currentLine contains "Result": resultName = get text between quotes in currentLine
+     end case
+     
+     currentLine = read line (fileName) // reassign currentLine to the next line in the pgn file
+ end while
+ 
  // Now that the tags have been read, the program tests whether or not the last line of text contains the moves of
  // the game by checking if the line starts with '1'. If not, the pgn file is not correctly formatted, and the
  // program will give an error message
