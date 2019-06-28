@@ -3,7 +3,8 @@
 Declare private list of Strings moves // a list containing all the moves of the game. Each index represents
                                       // one "ply" or "tempo"
 
-Declare private Integer currentPly = 0 // This variable keeps track of the current move in the game. 
+Declare private Integer currentPly = 0 // This variable keeps track of the current move in the game. An odd value
+                                       // here means that White has moved and it is Black's turn
 
 Declare canvas object canvas // This is the variable that contains the ID of the canvas object used to display the board
 
@@ -30,7 +31,8 @@ constructor:
  -return: none
  call readFile(fileName)
  board = Board() // create the board object. The board object's constructor will create the pieces and initialize
-                 // them in the proper starting position for a chess game.
+                 // them in the proper starting position for a chess game. In the future, there may be the possibility
+                 // of a different initial starting position
  board.applyMoves(moves) // this fills the board and pieces with the location information for the whole game
  board.display(canvas, currentPly)
 
