@@ -1,0 +1,17 @@
+// class: Board
+// 
+// This class contains all the pieces in the game, a method for displaying the board, and a method for applying a list of
+// moves to all the pieces
+
+
+// Constructor
+Constructor
+ -parameters:
+ -returns: none
+ 
+
+// This method displays the board on a canvas and then displays each piece in the correct position according to the current move
+displayBoard
+ -parameters: canvas, move Int
+ -returns: none
+ 
