@@ -102,23 +102,36 @@ private getMoves
  declare local Boolean continue = true  // this keeps the following loop going
  
  loop while continue = true
-     declare local Int nextSpace = getNextSpace(lineOfMoves, index)  //  we may need to create this function
-     declare local String move = get sub String from index to (nextSpace - 1) from lineOfMoves  // extracting the move information
-     case
-         move equals any item from list gameEnd: // gameEnd is from a separate class with general chess utility functions and properties
-             continue = false
-         the uppercase first character of move is between A...R:
-             add move to the list localMoves
-             index = nextSpace + 1
-             if size of localMoves is even  // this tests if the move was made by black
-                 nextSpace = getNextSpace(lineOfMoves, index) 
-                 index = nextSpace + 1  // if the last move was made by Black, we skip the next "chunk"
-             end if
-         else:
-             call errorMessage("format")
-             continue = false
-     end case
+     declare local Int nextSpace = getNextSpace(lineOfMoves, index)  //  we may need to create this function. It should return a
+                                                                     //  negative Integer if there is no space
+     declare local String move  //  this variable temporarily stores the moves extracted from lineOfMoves
+     if nextSpace < 0  //  if there is no space, that means we have come to the end of the string of moves. We just need to add the
+                       //  last term to the list localMoves and then discontinue the loop
+         move = get sub String from index to (lineOfMoves.size - 1) from lineOfMoves  // extracts the last "move"
+         add move to the list localMoves
+         continue = false
+     else
+         move = get sub String from index to (nextSpace - 1) from lineOfMoves  // extracting the move information
+         case
+             move equals any item from list gameEnd: // gameEnd is from a separate class with general chess utility functions and properties
+                 continue = false
+             the uppercase first character of move is between A...R:
+                 add move to the list localMoves
+                 index = nextSpace + 1
+                 if size of localMoves is even  // this tests if the move was made by black
+                     nextSpace = getNextSpace(lineOfMoves, index) 
+                     if nextSpace < 0   //  if there is no, that means we have reached the end of the game and need to stop the loop
+                         continue = false
+                     else
+                         index = nextSpace + 1  //  if the last move was made by Black, we skip the next "chunk" 
+                                                //  because it is just a number
+                     end if
+                 end if
+             else:
+                 call errorMessage("format")
+                 continue = false
+         end case
+     end if
  end loop
  
  return localMoves
- //  we need to design a means to check the String length while looping
