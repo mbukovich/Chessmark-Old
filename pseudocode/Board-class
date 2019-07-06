@@ -80,6 +80,16 @@ createPieces
 displayBoard
  -parameters: canvas, Int move
  -returns: none
+ draw a beige square on canvas with length screen width at starting point (0, 0)
+ loop from 0 to y < 8 with index y
+     loop from 1 to x < 5 with index x
+         draw light-blue square with length screen width / 8 at starting point ((x - (y%2)) * screenwidth/8, y * screenwidth/8)
+     end loop
+ end loop
+ loop from 0 to i < 30 with index i
+     piece[i].drawPiece(canvas)
+ end loop
+ 
  
 // This is the meat of the class.
 applyMoves
