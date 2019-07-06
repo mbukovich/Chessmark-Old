@@ -58,21 +58,23 @@ createPieces
  // Create Black Pieces
  // Start with pawns
  loop from 0 to i < 8 with index i
-     piece[i + 16] = Piece(i, 1, 11)
+     piece[i + 16] = Piece(i, 6, 11)
  // Now create the pieces
  // Knights
- piece[24] = Piece(1, 0, 12)
- piece[25] = Piece(6, 0, 12)
+ piece[24] = Piece(1, 7, 12)
+ piece[25] = Piece(6, 7, 12)
  // Bishops
- piece[26] = Piece(2, 0, 13)
- piece[27] = Piece(5, 0, 13)
+ piece[26] = Piece(2, 7, 13)
+ piece[27] = Piece(5, 7, 13)
  // Rooks
- piece[28] = Piece(0, 0, 14)
- piece[29] = Piece(7, 0, 14)
+ piece[28] = Piece(0, 7, 14)
+ piece[29] = Piece(7, 7, 14)
  // Queen
- piece[30] = Piece(3, 0, 15)
+ piece[30] = Piece(3, 7, 15)
  // Now the King
- piece[31] = Piece(4, 0, 16)
+ piece[31] = Piece(4, 7, 16)
+
+
 
 // This method displays the board on a canvas and then displays each piece in the correct position according to the current move
 displayBoard
@@ -81,6 +83,6 @@ displayBoard
  
 // This is the meat of the class.
 applyMoves
- -parameters: String moveList
+ -parameters: list of Strings moveList
  -returns: none
  
