@@ -3,15 +3,84 @@
 // This class contains all the pieces in the game, a method for displaying the board, and a method for applying a list of
 // moves to all the pieces
 
+// Piece Classification System is the following:
+// Numbers 1-6 are the white pieces
+// Numbers 11-16 are the black pieces
+// 1 (or 11) is a pawn
+// 2 (or 12) is a Knight
+// 3 (or 13) is a Bishop
+// 4 (or 14) is a Rook
+// 5 (or 15) is a Queen
+// 6 (or 16) is a King
+
+// Properties
+Declare private array of Piece objects pieces
+
 
 // Constructor
 Constructor
- -parameters:
+ -parameters: none
  -returns: none
+ call createPieces()
  
+// There will likely be a secondary constructor or init function to setup boards for alternative rules and starting positions
+ 
+
+// This creates all the piece objects. In the future, this function may take a parameter that indicates the board setup.
+// For now, this will create the standard 32 pieces in the standard positions
+// The Piece object constructor takes three parameters: x location, y location, and the piece classification (listed at the
+// top of this file)
+createPieces
+ -parameters: none
+ -returns: none
+ // initialize pieces[] array with 32 items
+ pieces = Array of Piece[32]
+ 
+ // Create White Pieces
+ // Start with pawns
+ loop from 0 to i < 8 with index i
+     piece[i] = Piece(i, 1, 1)
+ // Now create the pieces
+ // Knights
+ piece[8] = Piece(1, 0, 2)
+ piece[9] = Piece(6, 0, 2)
+ // Bishops
+ piece[10] = Piece(2, 0, 3)
+ piece[11] = Piece(5, 0, 3)
+ // Rooks
+ piece[12] = Piece(0, 0, 4)
+ piece[13] = Piece(7, 0, 4)
+ // Queen
+ piece[14] = Piece(3, 0, 5)
+ // Now the King
+ piece[15] = Piece(4, 0, 6)
+ 
+ // Create Black Pieces
+ // Start with pawns
+ loop from 0 to i < 8 with index i
+     piece[i + 16] = Piece(i, 1, 11)
+ // Now create the pieces
+ // Knights
+ piece[24] = Piece(1, 0, 12)
+ piece[25] = Piece(6, 0, 12)
+ // Bishops
+ piece[26] = Piece(2, 0, 13)
+ piece[27] = Piece(5, 0, 13)
+ // Rooks
+ piece[28] = Piece(0, 0, 14)
+ piece[29] = Piece(7, 0, 14)
+ // Queen
+ piece[30] = Piece(3, 0, 15)
+ // Now the King
+ piece[31] = Piece(4, 0, 16)
 
 // This method displays the board on a canvas and then displays each piece in the correct position according to the current move
 displayBoard
- -parameters: canvas, move Int
+ -parameters: canvas, Int move
+ -returns: none
+ 
+// This is the meat of the class.
+applyMoves
+ -parameters: String moveList
  -returns: none
  
