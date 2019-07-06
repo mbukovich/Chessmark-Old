@@ -62,3 +62,24 @@ changeClassification:
  -Parameters: Integer newClassificaiton
  -return type: none
  classification = newClassification
+
+
+// This method displays the piece on a canvas at it's location
+displayPiece
+ -Parameters: canvas
+ -returns: none
+ when the piece classification is...
+     1: draw "whitePawn.png" at starting point (xLocation * screenWidth/8, yLocation * screenWidth/8)
+     2: draw "whiteKnight.png" at starting point (xLocation * screenWidth/8, yLocation * screenWidth/8)
+     3: draw "whiteBishop.png" at starting point (xLocation * screenWidth/8, yLocation * screenWidth/8)
+     4: draw "whiteRook.png" at starting point (xLocation * screenWidth/8, yLocation * screenWidth/8)
+     5: draw "whiteQueen.png" at starting point (xLocation * screenWidth/8, yLocation * screenWidth/8)
+     6: draw "whiteKing.png" at starting point (xLocation * screenWidth/8, yLocation * screenWidth/8)
+     11: draw "blackPawn.png" at starting point (xLocation * screenWidth/8, yLocation * screenWidth/8)
+     12: draw "blackKnight.png" at starting point (xLocation * screenWidth/8, yLocation * screenWidth/8)
+     13: draw "blackBishop.png" at starting point (xLocation * screenWidth/8, yLocation * screenWidth/8)
+     14: draw "blackRook.png" at starting point (xLocation * screenWidth/8, yLocation * screenWidth/8)
+     15: draw "blackQueen.png" at starting point (xLocation * screenWidth/8, yLocation * screenWidth/8)
+     16: draw "blackKing.png" at starting point (xLocation * screenWidth/8, yLocation * screenWidth/8)
+     else: do nothing
+ end when
