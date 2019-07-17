@@ -1,0 +1,24 @@
+This file is to brainstorm and play with ideas related to translating the annotated data into actual moves.
+
+What is needed to translate annotation into an actual move?
+-Which side is making the move? Black or White?
+-which piece is making the move?
+-where on the board is the move being made to and from?
+-is there a capture?
+
+Which side is making the move? Black or White?
+  This should be easily assertained by whether or not the index of the list is even or odd
+
+Which piece is making the move?
+  This is a bit more complicated. In chess annotation, the piece is indicated as the first letter of a move. However,
+  there can be more than one of the same piece type. My thought is to have a local mutable list of piece objects. Loop
+  through all the pieces of White or Black and when a particular piece matches the type of the letter, add a reference
+  to that object to the list. Once, we have this mutable list, we must check the legal moves of each piece to see which
+  piece is capable of legally moving to the target square. It will take some programming and logic to determine legal
+  moves for a particular piece based on the situation. I am thinking of adding a separate legalMoves function to a chess 
+  utility class that will take the  return a list of legal destination coordinates. It might be worth considering the
+  possibility of this function being used while actually playing out a game or giving the user extra graphic information
+  about the current situation.
+  The case becomes more complicated when more than one piece is capable of legally moving to the target square. In this
+  case, the annotation will give an indication (either rank or file) of which piece is actually making the move. Otherwise
+  the pgn file is incorrectly formatted.
