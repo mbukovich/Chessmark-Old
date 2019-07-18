@@ -18,7 +18,16 @@ Which piece is making the move?
   moves for a particular piece based on the situation. I am thinking of adding a separate legalMoves function to a chess 
   utility class that will take the  return a list of legal destination coordinates. It might be worth considering the
   possibility of this function being used while actually playing out a game or giving the user extra graphic information
-  about the current situation.
+  about the current situation. 
   The case becomes more complicated when more than one piece is capable of legally moving to the target square. In this
   case, the annotation will give an indication (either rank or file) of which piece is actually making the move. Otherwise
   the pgn file is incorrectly formatted.
+
+Where on the board is the move being made to and from?
+  The target coordinates can be taken directly from the annotation. There will be some logic involved in extracting this
+  coordinate from the annotation.
+  The starting location can easily be taken from the location of the moving piece once that has been ascertained.
+
+Is there a capture?
+  If the annotation contains the character 'x', then there is a capture. The captured piece could potentially be found by
+  looping through all the pieces of the other side and comparing each piece's location with the starting location.
